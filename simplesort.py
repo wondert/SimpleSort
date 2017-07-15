@@ -36,4 +36,7 @@ def simplesort(randomseq, key=None, reverse=False):
 					seq[i], seq[i+1] = seq[i+1], seq[i]
 					compares -= 1
 
-	return seq
+	if reverse:
+		return seq.reverse()
+	else:
+		return seq
