@@ -3,7 +3,7 @@ unsorted2 = ['sixteen', 'one', 'eight', 'seven', 'five', 'twelve']
 
 
 def rmemosort(randomseq, key=None, reverse=False):
-	#loop = 0
+	# loop = 0
 	if key and reverse:
 		memoized = {key(element):index for index, element in enumerate(randomseq)}
 		seq = [key(element) for element in randomseq]
@@ -11,19 +11,20 @@ def rmemosort(randomseq, key=None, reverse=False):
 		decr = 1
 		compares = 0
 		while (max):
-			#print("{}: ".format(compares), seq)
+			# print("{}: ".format(compares), seq)
 			for i in range(max-decr):
 				if seq[i] > seq[i+1]:
 					compares += 1
 					seq[i], seq[i+1] = seq[i+1], seq[i]
-					#print("{}: ".format(compares), seq)
-				#else:
-					#print('.')
+					# print("{}: ".format(compares), seq)
+				# else:
+					# print('.')
 			max -= 1
-			#print("At loop {} we have performed {} comparisons".format(loop, compares))
-			#loop += 1
+			# print("At loop {} we have performed
+			# {} comparisons".format(loop, compares))
+			# loop += 1
 			if (compares < 2):
-				#print('BREAK!!!')
+				# print('BREAK!!!')
 				break
 			else:
 				compares = 0
@@ -36,19 +37,20 @@ def rmemosort(randomseq, key=None, reverse=False):
 		decr = 1
 		compares = 0
 		while (max):
-			#print("{}: ".format(compares), seq)
+			# print("{}: ".format(compares), seq)
 			for i in range(max-decr):
 				if seq[i] > seq[i+1]:
 					compares += 1
 					seq[i], seq[i+1] = seq[i+1], seq[i]
-					#print("{}: ".format(compares), seq)
-				#else:
-					#print('.')
+					# print("{}: ".format(compares), seq)
+				# else:
+					# print('.')
 			max -= 1
-			#print("At loop {} we have performed {} comparisons".format(loop, compares))
-			#loop += 1
+			# print("At loop {} we have performed
+			# {} comparisons".format(loop, compares))
+			# loop += 1
 			if (compares < 2):
-				#print('BREAK!!!')
+				# print('BREAK!!!')
 				break
 			else:
 				compares = 0
@@ -60,19 +62,20 @@ def rmemosort(randomseq, key=None, reverse=False):
 		decr = 1
 		compares = 0
 		while (max):
-			#print("{}: ".format(compares), seq)
+			# print("{}: ".format(compares), seq)
 			for i in range(max-decr):
 				if seq[i] > seq[i+1]:
 					compares += 1
 					seq[i], seq[i+1] = seq[i+1], seq[i]
-					#print("{}: ".format(compares), seq)
-				#else:
-					#print('.')
+					# print("{}: ".format(compares), seq)
+				# else:
+					# print('.')
 			max -= 1
-			#print("At loop {} we have performed {} comparisons".format(loop, compares))
-			#loop += 1
+			# print("At loop {} we have performed
+			# {} comparisons".format(loop, compares))
+			# loop += 1
 			if (compares < 2):
-				#print('BREAK!!!')
+				# print('BREAK!!!')
 				break
 			else:
 				compares = 0
@@ -81,5 +84,3 @@ def rmemosort(randomseq, key=None, reverse=False):
 		return seq.reverse()
 	else:
 		return seq
-
-#max-decr-1

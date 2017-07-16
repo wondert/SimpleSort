@@ -1,3 +1,5 @@
+"""testsuite module unit testing for SimpleSort library."""
+
 # import simplesort as ss
 #
 # sequence1 = ss.simplesort(ss.unsorted1)
@@ -8,7 +10,6 @@
 #
 # print(ss.unsorted1)
 # print(sequence1)
-
 
 
 # import kindasimplesort as kss
@@ -27,16 +28,35 @@
 # print(sequence3)
 
 
-import rightmemosort as rms
+# import rightmemosort as rms
+#
+# sequence1 = rms.rmemosort(rms.unsorted1)
+# print(rms.unsorted1)
+# print(sequence1)
+#
+# sequence2 = rms.rmemosort(rms.unsorted2)
+# print(rms.unsorted2)
+# print(sequence2)
+#
+# sequence3 = rms.rmemosort(rms.unsorted2, key=len)
+# print(rms.unsorted2)
+# print(sequence3)
 
-sequence1 = rms.rmemosort(rms.unsorted1)
-print(rms.unsorted1)
-print(sequence1)
 
-sequence2 = rms.rmemosort(rms.unsorted2)
-print(rms.unsorted2)
-print(sequence2)
+import popsort as ps
 
-sequence3 = rms.rmemosort(rms.unsorted2, key=len)
-print(rms.unsorted2)
+# print(ps.unsorted1)
+# sequence0 = ps.recursivesort(ps.unsorted1)
+# print(sequence0)
+#
+# print(ps.unsorted1)
+# sequence1 = ps.popsort(ps.unsorted1)
+# print(sequence1)
+#
+# print(ps.unsorted2)
+# sequence2 = ps.popsort(ps.unsorted2)
+# print(sequence2)
+#
+sequence3 = ps.popsort(ps.unsorted2, key=len)
+print(ps.unsorted2)
 print(sequence3)
