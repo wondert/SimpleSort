@@ -1,5 +1,5 @@
 unsorted1 = [29, 15, 32, 1, 19, 72, 35, 7, 81]
-unsorted2 = ['sixteen', 'one', 'eight', 'seven', 'five', 'twelve']
+unsorted2 = ['sixteen', 'one', 'eightteen', 'seven', 'five', 'twelve']
 
 
 def simplesort(randomseq, key=None, reverse=False):

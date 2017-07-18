@@ -2,13 +2,13 @@
 
 # test sequences for validation of sorting
 unsorted1 = [29, 15, 32, 1, 19, 72, 35, 7, 81]
-unsorted2 = ['sixteen', 'one', 'eight', 'seven', 'five', 'twelve']
+unsorted2 = ['sixteen', 'one', 'eighteen', 'seven', 'five', 'twelve']
 
 
 def recursivesort(sequence, slidingstart=0, switch=0):
     """Recursively sort a sequence to shift the higher value right.
 
-    recursivesort takes three argument, and returns a tuple containing the
+    recursivesort takes three arguments, and returns a tuple containing the
     sorted sequence with the highest value shifted to the right end and a
     flag, switch, which indicates if any value shifted during the function
     call.
@@ -58,6 +58,7 @@ def popsort(randomseq, key=None, reverse=False):
     :type reverse: boolean, default = False.
     """
     if key and reverse:
+        # fuu
         memoized = {key(value):index for index, value in enumerate(randomseq)}
         keyedseq = [key(element) for element in randomseq]
         seq1 = keyedseq[:len(keyedseq)//2]
@@ -177,7 +178,9 @@ def popsort(randomseq, key=None, reverse=False):
                 break
 
     if reverse:
-        return (seq1+seq2).reverse()
+        seq = seq1+seq2
+        seq.reverse()
+        return seq
     else:
         # print((seq1+seq2), "-- sort complete!!!")
         return seq1 + seq2
