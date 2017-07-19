@@ -3,7 +3,7 @@ unsorted2 = ['sixteen', 'one', 'eightteen', 'seven', 'five', 'twelve']
 
 
 def simplesort(randomseq, key=None, reverse=False):
-	if key and reverse:
+	if key:
 		seq = [key(element) for element in randomseq]
 		count = len(seq)-1
 		compares = 0
@@ -13,17 +13,6 @@ def simplesort(randomseq, key=None, reverse=False):
 				if seq[i] > seq[i+1]:
 					seq[i], seq[i+1] = seq[i+1], seq[i]
 					compares += 1
-
-	elif key and not reverse:
-		seq = [key(element) for element in randomseq]
-		count = len(seq)-1
-		compares = 0
-		while count != compares:
-			compares = count
-			for i in range(count):
-				if seq[i] > seq[i+1]:
-					seq[i], seq[i+1] = seq[i+1], seq[i]
-					compares -= 1
 
 	else:
 		seq = [element for element in randomseq]
@@ -37,6 +26,6 @@ def simplesort(randomseq, key=None, reverse=False):
 					compares -= 1
 
 	if reverse:
-		return seq.reverse()
-	else:
-		return seq
+		seq.reverse()
+
+	return seq

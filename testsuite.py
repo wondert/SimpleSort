@@ -4,6 +4,7 @@ import simplesort as ss
 import kindasimplesort as kss
 import rightmemosort as rms
 import popsort as ps
+import dupsort as tps
 
 
 print("simplesort function test. sequences must be fully sorted.")
@@ -69,3 +70,42 @@ print(sequence13, "\n")
 print(ps.unsorted2)
 sequence14 = ps.popsort(ps.unsorted2, key=len, reverse=True)
 print(sequence14, "\n")
+
+
+print("recursivesort function test. single pass through a sequence")
+print(tps.unsorted1)
+sequence15 = tps.recursivesort(tps.unsorted1)
+print(sequence15, "\n")
+
+print("popsort function test. sequences must be fully sorted.")
+print(tps.unsorted1)
+sequence16 = tps.popsort(tps.unsorted1)
+print(sequence16, "\n")
+
+print(tps.unsorted2)
+sequence17 = tps.popsort(tps.unsorted2)
+print(sequence17, "\n")
+
+print(tps.unsorted2)
+sequence18 = tps.popsort(tps.unsorted2, key=len)
+print(sequence18, "\n")
+
+print(tps.unsorted2)
+sequence19 = tps.popsort(tps.unsorted2, key=len, reverse=True)
+print(sequence19, "\n")
+
+print(tps.dupseq1)
+sequence20 = tps.popsort(tps.dupseq1)
+print(sequence20, "\n")
+
+print(tps.dupseq1)
+sequence21 = tps.popsort(tps.dupseq1, reverse=True)
+print(sequence21, "\n")
+
+print(tps.dupseq2)
+sequence22 = tps.popsort(tps.dupseq2, key=len)
+print(sequence22, "\n")
+
+print(tps.dupseq2)
+sequence23 = tps.popsort(tps.dupseq2, key=len, reverse=True)
+print(sequence23, "\n")

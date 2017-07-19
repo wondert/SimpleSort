@@ -1,8 +1,15 @@
-"""The popsort module contains functions to recursively sort a sequence."""
+"""The dupsort module contains functions to recursively sort a sequence.
+
+This module is an expansion upon the popsort algorithm, but is compatible
+with sequences that contain duplicate values. The dupsort function will
+retain the duplicate values in their original order in the unsorted sequence.
+"""
 
 # test sequences for validation of sorting
 unsorted1 = [29, 15, 32, 1, 19, 72, 35, 7, 81]
 unsorted2 = ['sixteen', 'one', 'eighteen', 'seven', 'five', 'twelve']
+dupseq1 = [29, 15, 32, 1, 7, 72, 35, 7, 81]
+dupseq2 = ['sixteen', 'one', 'six', 'seven', 'five', 'twelve']
 
 
 def recursivesort(sequence, slidingstart=0, switch=0):
@@ -13,6 +20,10 @@ def recursivesort(sequence, slidingstart=0, switch=0):
     flag, switch, which indicates if any value shifted during the function
     call.
 
+    recursivesort in the dupsort module can take a sequence of tuples or
+    a sequence of values as in the popsort module. If the sequence contains
+    tuples, they will be sorted based upon their value at index 0.
+
     recursivesort(mutable sequence, int, int) -> mutated sequence, int
 
     :param sequence: container with elements to sort.
@@ -22,20 +33,38 @@ def recursivesort(sequence, slidingstart=0, switch=0):
     :param switch: (optional) flag to indicate if function shifted a value.
     :type switch: int, default=0.
     """
-    # return sequence once final two values compared
-    if not (len(sequence) - slidingstart - 1):
-        return sequence, switch
+    # check if sequence is list of tuples.
+    if isinstance(sequence[0], tuple):
+        # return sequence once final two values compared
+        if not (len(sequence) - slidingstart - 1):
+            return sequence, switch
 
-    # right shift larger value if it is to the left in the sequence
-    elif sequence[slidingstart] > sequence[slidingstart+1]:
-        sequence[slidingstart], sequence[slidingstart+1] = (
-            sequence[slidingstart+1], sequence[slidingstart])
-        switch = 1
-        return recursivesort(sequence, slidingstart+1, switch)
+        # right shift larger value if it is to the left in the sequence
+        elif sequence[slidingstart][0] > sequence[slidingstart+1][0]:
+                sequence[slidingstart], sequence[slidingstart+1] = (
+                    sequence[slidingstart+1], sequence[slidingstart])
+                switch = 1
+                return recursivesort(sequence, slidingstart+1, switch)
 
-    # recursive call to the next value in sequence
+            # recursive call to the next value in sequence
+        else:
+            return recursivesort(sequence, slidingstart+1, switch)
+
     else:
-        return recursivesort(sequence, slidingstart+1, switch)
+        # return sequence once final two values compared
+        if not (len(sequence) - slidingstart - 1):
+            return sequence, switch
+
+        # right shift larger value if it is to the left in the sequence
+        elif sequence[slidingstart] > sequence[slidingstart+1]:
+                sequence[slidingstart], sequence[slidingstart+1] = (
+                    sequence[slidingstart+1], sequence[slidingstart])
+                switch = 1
+                return recursivesort(sequence, slidingstart+1, switch)
+
+            # recursive call to the next value in sequence
+        else:
+            return recursivesort(sequence, slidingstart+1, switch)
 
 
 def popsort(randomseq, key=None, reverse=False):
@@ -46,9 +75,6 @@ def popsort(randomseq, key=None, reverse=False):
     The sequence must be mutable. popsort uses two default arguments, a flag
     reverse to indicate if the return sequence should be in descending
     order, and a key function to modify the values to be sorted.
-
-    popsort cannot sort sequences that contain duplicate values if a key
-    function is used. Refer to dupsort module for this functionality.
 
     popsort(sequence, int, int) -> sorted sequence, int
 
@@ -61,8 +87,8 @@ def popsort(randomseq, key=None, reverse=False):
     :type reverse: boolean, default = False.
     """
     if key:
-        memoized = {key(value):index for index, value in enumerate(randomseq)}
-        keyedseq = [key(element) for element in randomseq]
+        keyedseq = [(key(element), index)
+                    for index, element in enumerate(randomseq)]
         seq1 = keyedseq[:len(keyedseq)//2]
         seq2 = keyedseq[(len(keyedseq)//2):]
         # swap = 0
@@ -86,7 +112,7 @@ def popsort(randomseq, key=None, reverse=False):
                 seq2, switch2 = recursivesort(seq2)
                 # print("..seq2: {}/nswitch2: {}".format(seq2, switch2))
 
-            if seq1[-1] > seq2[0]:
+            if seq1[-1][0] > seq2[0][0]:
                 seq2[0], seq1[-1] = seq1[-1], seq2[0]
                 # swap = 1
                 # print("swap!")
@@ -98,8 +124,8 @@ def popsort(randomseq, key=None, reverse=False):
             if not (switch1 or switch2):
                 break
 
-        seq1 = [randomseq[memoized[element]] for element in seq1]
-        seq2 = [randomseq[memoized[element]] for element in seq2]
+        seq1 = [randomseq[seq1[element][1]] for element in range(len(seq1))]
+        seq2 = [randomseq[seq2[element][1]] for element in range(len(seq2))]
 
     else:
         seq = [element for element in randomseq]

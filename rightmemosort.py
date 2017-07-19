@@ -7,29 +7,31 @@ unsorted2 = ['sixteen', 'one', 'eighteen', 'seven', 'five', 'twelve']
 def rmemosort(randomseq, key=None, reverse=False):
 	"""Iteratively sort a sequence by shifting the higher values right.
 
-rmemosort takes three arguments, a list or dict containing items to be sorted,
-an optional key function to modify the values of each item in the list and sort
-by the key function return values, and an optional flag reverse which indicates
-if the sorted sequence should be returned in descending order. By default,
-rmemosort returns a list containing the sorted sequence in ascending order.
+	rmemosort takes three arguments, a list or dict containing items to be sorted,
+	an optional key function to modify the values of each item in the list and sort
+	by the key function return values, and an optional flag reverse which indicates
+	if the sorted sequence should be returned in descending order. By default,
+	rmemosort returns a list containing the sorted sequence in ascending order.
 
-rmemosort implements a rudimentary bubblesort algorithm to account for each
-full sort iteration moving the highest value to the end. The result being that
-the final index is sorted and no longer needs to be considered in future sorts.
+	rmemosort implements a rudimentary bubblesort algorithm to account for each
+	full sort iteration moving the highest value to the end. The result being that
+	the final index is sorted and no longer needs to be considered in future sorts.
 
-rmemosort(mutable sequence, function, boolean) -> sorted sequence
+	rmemosort cannot sort sequences that contain duplicate values if a key function
+	is used. Refer to dupsort module for this functionality.
 
-:param randomseq: container with elements to sort.
-:type randomseq: mutable sequence; list or dict. must support slicing/insert.
-:param key: (optional) function to modify elements of list to custom sort.
-:type key: function, default = None.
-:param reverse: (optional) flag to indicate if the return sequence is in
-descending order.
-:type reverse: boolean, default=False.
-"""
+	rmemosort(mutable sequence, function, boolean) -> sorted sequence
+
+	:param randomseq: container with elements to sort.
+	:type randomseq: mutable sequence; list or dict. must support slicing/insert.
+	:param key: (optional) function to modify elements of list to custom sort.
+	:type key: function, default = None.
+	:param reverse: (optional) flag to indicate if the return sequence is in
+	descending order.
+	:type reverse: boolean, default=False.
+	"""
 	# loop = 0
 	if key:
-		# create dict to hold original index:value relationship
 		memoized = {key(element):index
 									for index, element in enumerate(randomseq)}
 		# create sequence with values modified by key function
@@ -98,6 +100,5 @@ descending order.
 
 	if reverse:
 		seq.reverse()
-		return seq
-	else:
-		return seq
+
+	return seq
