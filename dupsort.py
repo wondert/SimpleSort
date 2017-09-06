@@ -11,7 +11,8 @@ unsorted2 = ['sixteen', 'one', 'eighteen', 'seven', 'five', 'twelve']
 dupseq1 = [29, 15, 32, 1, 7, 72, 35, 7, 81]
 dupseq2 = ['sixteen', 'one', 'six', 'seven', 'five', 'twelve']
 
-
+# TODO - consider adding * in params to force specifying keywords
+# TODO - new API will break inner function calls due to recursion!!!
 def recursivesort(sequence, slidingstart=0, switch=0):
     """Recursively sort a sequence to shift the higher value right.
 
@@ -66,7 +67,8 @@ def recursivesort(sequence, slidingstart=0, switch=0):
         else:
             return recursivesort(sequence, slidingstart+1, switch)
 
-
+# TODO - consider adding * in params to force specifying keywords
+# TODO - will be a breaking API change to users!!!
 def popsort(randomseq, key=None, reverse=False):
     """Sort a sequence by shifting values in ascending order to the right.
 

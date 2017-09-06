@@ -26,6 +26,9 @@ the number of sorting cycles and operations required to sort.
 
 The dupsort module is the only module that can sort unordered sequences with
 duplicates and retain the duplicates original order in the unsorted sequence.
+To accomplish this task, recursivesort accept sequences and mappings of
+sequences, where each item in the sequence contains both the original
+order/index and value to be sorted.
 
 
 TODO - create a sorting algorithm that uses the mergesort algorithm.
